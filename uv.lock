@@ -101,6 +101,7 @@ source = { editable = "." }
 dependencies = [
     { name = "paho-mqtt" },
     { name = "sense-hat" },
+    { name = "setuptools" },
 ]
 
 [package.dev-dependencies]
@@ -112,6 +113,7 @@ dev = [
 requires-dist = [
     { name = "paho-mqtt", specifier = ">=2.1.0" },
     { name = "sense-hat", specifier = ">=2.6.0" },
+    { name = "setuptools", specifier = ">=80.9.0" },
 ]
 
 [package.metadata.requires-dev]
@@ -282,6 +284,15 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/14/3a/23cfedbbad061e36d1441b66b23403cc4a5becd9c09348be7ef2bea37791/sense-hat-2.6.0.tar.gz", hash = "sha256:9fd1b3bb1bd98c51f3fe4099cd246884da0aa12c3acfc64c826be0153b9ae10e", size = 18585 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/f5/73/16d26aadb8f2635b7ce758491883eac8f44bb7d1ee4625afdc3143723f06/sense_hat-2.6.0-py3-none-any.whl", hash = "sha256:2934335c656a35026eb3a28e8ed129fb16265509b5e7b0b94930c039b1cb3472", size = 18148 },
+]
+
+[[package]]
+name = "setuptools"
+version = "80.9.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/18/5d/3bf57dcd21979b887f014ea83c24ae194cfcd12b9e0fda66b957c69d1fca/setuptools-80.9.0.tar.gz", hash = "sha256:f36b47402ecde768dbfafc46e8e4207b4360c654f1f3bb84475f0a28628fb19c", size = 1319958 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/a3/dc/17031897dae0efacfea57dfd3a82fdd2a2aeb58e0ff71b77b87e44edc772/setuptools-80.9.0-py3-none-any.whl", hash = "sha256:062d34222ad13e0cc312a4c02d73f059e86a4acbfbdea8f8f76b28c99f306922", size = 1201486 },
 ]
 
 [[package]]
