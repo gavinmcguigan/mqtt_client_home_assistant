@@ -9,6 +9,7 @@ authors = [
 requires-python = ">=3.13"
 dependencies = [
     "paho-mqtt>=2.1.0",
+    "requests>=2.32.4",
     "sense-hat>=2.6.0",
     "setuptools>=80.9.0",
 ]
