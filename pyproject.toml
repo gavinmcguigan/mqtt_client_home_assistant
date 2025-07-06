@@ -1,0 +1,24 @@
+[project]
+name = "mqtt-client-home-assistant"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Gav", email = "gavin.mcguigan@checkmk.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "paho-mqtt>=2.1.0",
+]
+
+[project.scripts]
+mqtt-client-home-assistant = "mqtt_client_home_assistant:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "ipython>=9.4.0",
+]
