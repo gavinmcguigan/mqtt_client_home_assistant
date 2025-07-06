@@ -1,42 +1,35 @@
-""" MQTT Publisher Example
-This script publishes random temperature and humidity data to an MQTT broker.
-It connects to the broker, generates random values for temperature and humidity,
-and publishes these values to the specified topics every 5 seconds."""
-
-import random
+"""MQTT Publisher
+This script publishes data collected on the RPI4 to the Home assistant mosquitto broker.
+"""
 import time
-from sense_hat import SenseHat
-import paho.mqtt.client as mqtt
 
-sense = SenseHat()
+import paho.mqtt.client as mqtt
+from paho.mqtt.enums import CallbackAPIVersion
+
+from .sense_hat_sensors import publish_sense_hat_data
+
 
 def _setup():
-    BROKER_ADDRESS = "192.168.68.63"
-    client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, client_id="mqtt-tester")
+    client = mqtt.Client(
+        CallbackAPIVersion.VERSION2,
+        client_id="rpi4-mqtt-client",
+    )
     client.username_pw_set(username="shelly", password="shellyshellyshelly")
-    client.connect(BROKER_ADDRESS)
-    
+    client.connect(host="192.168.68.63")
+    client.publish("freya/rpi4-mqtt-client", "online")
     return client
 
+
 def main():
-    """Main function to publish temperature, humidity & pressure data to MQTT broker."""
+    """Main function"""
     client = _setup()
     try:
         while True:
-            temp_from_humidity = sense.get_temperature_from_humidity()
-            temp_from_pressure = sense.get_temperature_from_pressure()
-            avg_temp = (temp_from_humidity + temp_from_pressure) / 2
-            humidity = sense.get_humidity()
-            pressure = sense.get_pressure()
-
-            client.publish("freya/temperature_from_humidity", temp_from_humidity)
-            client.publish("freya/temperature_from_pressure", temp_from_pressure)
-            client.publish("freya/avg_temperature_read", avg_temp)
-            client.publish("freya/humidity_read", humidity)
-            client.publish("freya/pressure_read", pressure)
+            publish_sense_hat_data(client)
             time.sleep(60)
     except KeyboardInterrupt:
-        ...
+        client.publish("rpi4-mqtt-client", "offline")
+
 
 if __name__ == "__main__":
     main()
